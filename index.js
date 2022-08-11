@@ -1,1 +1,3 @@
-console.log("hello world")
+const startApplication = require('./src/app');
+
+startApplication();
