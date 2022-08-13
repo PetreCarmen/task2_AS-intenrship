@@ -6,7 +6,7 @@ const Sequelize = require('sequelize')
 const sequelize = new Sequelize(
     'projectsdb',
     'root',
-    'EliFil#32', {
+    '',  {
   
         // Explicitly specifying 
         // mysql database

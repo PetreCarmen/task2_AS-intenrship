@@ -2,6 +2,8 @@ const startApplication = require('./src/app');
 
 startApplication();
 
+console.log("hello world")
+
 // Importing the database model
 const sequelize = require('./utils/database')
 
@@ -9,4 +11,6 @@ const sequelize = require('./utils/database')
 const Project = require('./models/project')
 
 // Creating all the tables defined in user
+
 sequelize.sync()
+
