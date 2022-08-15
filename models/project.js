@@ -31,7 +31,7 @@ const Project = sequelize.define('project', {
    To_Do: { type: Sequelize.STRING },
 
    // Column: Timestamps
-   createdAt: Sequelize.DATE,
-   updatedAt: Sequelize.DATE,
+  // createdAt: Sequelize.DATE,
+  // updatedAt: Sequelize.DATE,
 })
 module.exports = Project

@@ -6,7 +6,7 @@ const Sequelize = require('sequelize')
 const sequelize = new Sequelize(
     'projectsdb',
     'root',
-    '',  {
+    'password',  {
   
         // Explicitly specifying 
         // mysql database
