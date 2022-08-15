@@ -30,9 +30,6 @@ const Project = sequelize.define('project', {
    Nice_to_have_skills: { type: Sequelize.STRING, allowNull:false },
    To_Do: { type: Sequelize.STRING, allowNull:false },
 
-   // Name of Column #3: email
-   email: { type: Sequelize.STRING, allowNull:false },
-
    // Column: Timestamps
    createdAt: Sequelize.DATE,
    updatedAt: Sequelize.DATE,
