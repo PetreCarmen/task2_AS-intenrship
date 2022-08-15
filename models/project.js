@@ -1,17 +1,18 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../utils/database')
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 const Project = sequelize.define('project', {
    ID:{
-
       type:Sequelize.INTEGER,
-
-      // Increment the value automatically
       autoIncrement:true,
-
-      // user_id can not be null.
       allowNull:false,
-
-      // To uniquely identify user
       primaryKey:true
    },
 
@@ -30,8 +31,5 @@ const Project = sequelize.define('project', {
    Nice_to_have_skills: { type: Sequelize.STRING },
    To_Do: { type: Sequelize.STRING },
 
-   // Column: Timestamps
-  // createdAt: Sequelize.DATE,
-  // updatedAt: Sequelize.DATE,
 })
 module.exports = Project

@@ -1,5 +1,4 @@
 
-// Include Sequelize module
 const Sequelize = require('sequelize')
   
 // Creating new Object of Sequelize
@@ -8,11 +7,7 @@ const sequelize = new Sequelize(
     'root',
     'password',  {
   
-        // Explicitly specifying 
-        // mysql database
-        dialect: 'mysql',
-  
-        // By default host is 'localhost'           
+        dialect: 'mysql',          
         host: 'localhost'
     }
 );
