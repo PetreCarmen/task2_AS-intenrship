@@ -26,7 +26,7 @@ const Project = sequelize.define('project', {
    Travel_required: { type: Sequelize.STRING },
    Team_members: { type: Sequelize.STRING },
    Working_hours: { type: Sequelize.STRING },
-   Mandatory_slkills: { type: Sequelize.STRING },
+   Mandatory_skills: { type: Sequelize.STRING },
    Nice_to_have_skills: { type: Sequelize.STRING },
    To_Do: { type: Sequelize.STRING },
 
