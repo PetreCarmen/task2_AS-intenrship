@@ -34,4 +34,13 @@ function configureRoutes(expressApp, projectModel) {
     expressApp.get('/projects', function(req, res){
         projectModel.findAll().then(projects =>res.json(projects));
     })
+    //delete
+    expressApp.delete('/project/:id', function(req, res) {
+        projectModel.destroy({
+            where: {
+                ID: req.params.id
+            }
+        }).then(() => res.status(200).send())
+            .catch(() => res.status(500).send());
+    })
 }
