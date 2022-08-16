@@ -21,7 +21,7 @@ function configureRoutes(expressApp, projectModel) {
 
     //adding a select all projects endpoint 
     expressApp.get('/projects', function(req, res){
-        Project.findAll().then(projects =>res.json);
+        projectModel.findAll().then(projects =>res.json(projects));
     })
 
 }
