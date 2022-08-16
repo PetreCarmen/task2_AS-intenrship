@@ -1,9 +1,5 @@
 const startApplication = require('./src/app');
 
-startApplication();
-
-console.log("hello world")
-
 // Importing the database model
 const sequelize = require('./utils/database')
 
@@ -27,3 +23,4 @@ sequelize.sync({ force: true })
         console.log(projects);
       });
   });
+startApplication(Project);
