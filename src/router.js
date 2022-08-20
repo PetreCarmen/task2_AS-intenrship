@@ -1,25 +1,26 @@
-module.exports = {
-    configureRoutes: configureRoutes
-}
 const express = require('express')
 
-function configureRoutes(expressApp, projectModel) {
+function configureRoutes(expressApp, sequelize) {
     expressApp.use(express.json());
 
+    configureProjectRoutes(expressApp, sequelize)
+}
+
+function configureProjectRoutes(expressApp, sequelize) {
     //adding an endpoint which can return a project based on a given project id
     expressApp.get('/project/:id',
         (req, res) => {
             const id = req.params.id;
             console.log("id", id);
-            projectModel.findByPk(id).then(project => {
+            sequelize.models.project.findByPk(id).then(project => {
                 res.setHeader("Content-Type", "application/json");
                 res.json(project["dataValues"]);
             }).catch((err) => res.status(404).send());
         });
     // 5-Add an endpoint for updating an existing project based on its id
-    expressApp.put('/projects/:id', function (req, res) {
+    expressApp.put('/project/:id', function (req, res) {
         const id = req.params.id;
-        projectModel.update(req.body, {
+        sequelize.models.project.update(req.body, {
             where: {
                 ID: id
             }
@@ -30,17 +31,22 @@ function configureRoutes(expressApp, projectModel) {
             });
     });
 
-    //adding a select all projects endpoint 
-    expressApp.get('/projects', function(req, res){
-        projectModel.findAll().then(projects =>res.json(projects));
-    })
     //delete
     expressApp.delete('/project/:id', function(req, res) {
-        projectModel.destroy({
+        sequelize.models.project.destroy({
             where: {
                 ID: req.params.id
             }
         }).then(() => res.status(200).send())
             .catch(() => res.status(500).send());
     })
+
+    //adding a select all projects endpoint
+    expressApp.get('/projects', function(req, res){
+        sequelize.models.project.findAll().then(projects =>res.json(projects));
+    })
+}
+
+module.exports = {
+    configureRoutes: configureRoutes
 }
