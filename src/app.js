@@ -3,12 +3,12 @@ const routes = require('./router');
 
 module.exports = startApplication;
 
-function startApplication(projectModel) {
+function startApplication(sequelize) {
     const app = express();
     const port = 3000;
 
 
-    routes.configureRoutes(app, projectModel);
+    routes.configureRoutes(app, sequelize);
 
     app.listen(port, () => {
         console.log(`Example app listening on port ${port}`)
