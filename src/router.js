@@ -4,6 +4,7 @@ function configureRoutes(expressApp, sequelize) {
     expressApp.use(express.json());
 
     configureProjectRoutes(expressApp, sequelize)
+    configureCandidatesRoutes(expressApp, sequelize)
 }
 
 function configureProjectRoutes(expressApp, sequelize) {
@@ -44,6 +45,14 @@ function configureProjectRoutes(expressApp, sequelize) {
     //adding a select all projects endpoint
     expressApp.get('/projects', function(req, res){
         sequelize.models.project.findAll().then(projects =>res.json(projects));
+    })
+}
+ 
+
+function configureCandidatesRoutes(expressApp, sequelize){
+    //adding a select all candidates endpoint
+    expressApp.get('/candidates', function(req, res){
+        sequelize.models.candidate.findAll().then(candidates =>res.json(candidates));
     })
 }
 
