@@ -111,7 +111,63 @@ function configureCandidatesRoutes(expressApp, sequelize){
             });
     });
 }
+//Create read update delete for Interviuri
 
+function configureInterviewsRoutes(expressApp, sequelize){
+    
+    //adding a select all Interviews endpoint
+
+    //GET route for interviews
+    expressApp.get('/interviews', function(req, res){
+        sequelize.models.interview.findAll().then(interviews =>res.json(interviews));
+    })
+    //DELETE route for interviews
+    expressApp.delete('/interviews/:id', function(req, res) {
+        sequelize.models.interview.destroy({
+            where: {
+                ID: req.params.id
+            }
+        }).then(() => res.status(200).send())
+            .catch(() => res.status(500).send());
+    })
+    //POST route for interviews
+
+    //PUT route for interviews
+    expressApp.put('/interviews/:id', function (req, res) {
+        const id = req.params.id;
+        sequelize.models.interview.update(req.body, {
+            where: {
+                ID: id
+            }
+        }).then(() => res.status(200).send())
+            .catch(err => {
+                console.log("could not update", err);
+                res.status(500).send();
+            });
+    })
+    expressApp.post ('/interview', function(req, res){
+        // Create an interview
+        const interview = {
+            Interview_date: req.body.Interview_date,
+            Interview_duration: req.body.Interview_duration,
+            Interviewer: req.body.Interviewer
+        };
+
+        // Save Interview in the database
+        interview.post(interview)
+          .then(data => {
+            res.send(data);
+          })
+          .catch(err => {
+            res.status(500).send({
+              message:
+                err.message || "Some error occurred while inserting candidate."
+            });
+          });
+      });
+
+ 
+    }
 module.exports = {
     configureRoutes: configureRoutes
 }
