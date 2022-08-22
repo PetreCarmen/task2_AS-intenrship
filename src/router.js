@@ -50,10 +50,35 @@ function configureProjectRoutes(expressApp, sequelize) {
  
 
 function configureCandidatesRoutes(expressApp, sequelize){
-    //adding a select all candidates endpoint
+    
+    //GET route for candidates
     expressApp.get('/candidates', function(req, res){
         sequelize.models.candidate.findAll().then(candidates =>res.json(candidates));
     })
+    //DELETE route for candidates
+    expressApp.delete('/candidates/:id', function(req, res) {
+        sequelize.models.candidate.destroy({
+            where: {
+                ID: req.params.id
+            }
+        }).then(() => res.status(200).send())
+            .catch(() => res.status(500).send());
+    })
+    //POST route for candidates
+
+    //PUT route for candidates
+    expressApp.put('/candidates/:id', function (req, res) {
+        const id = req.params.id;
+        sequelize.models.candidate.update(req.body, {
+            where: {
+                ID: id
+            }
+        }).then(() => res.status(200).send())
+            .catch(err => {
+                console.log("could not update", err);
+                res.status(500).send();
+            });
+    });
 }
 
 module.exports = {
