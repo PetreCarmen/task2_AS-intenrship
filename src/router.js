@@ -53,7 +53,9 @@ function configureProjectRoutes(expressApp, sequelize) {
 function configureCandidatesRoutes(expressApp, sequelize) {
     //GET route for candidates
     expressApp.get('/candidates', function (req, res) {
-        sequelize.models.candidate.findAll().then(candidates => res.json(candidates));
+        sequelize.models.candidate.findAll()
+            .then(candidates => res.json(candidates))
+            .catch(err => res.status(500).send(err.message || "could not get candidate"));
     })
 
     //POST route for candidates
@@ -70,7 +72,7 @@ function configureCandidatesRoutes(expressApp, sequelize) {
 
         // Save Candidate in the database
         sequelize.models.candidate.create(candidate)
-            .then(res.send)
+            .then(result => res.json(result))
             .catch(err => {
                 res.status(500).send({
                     message: err.message || "Some error occurred while inserting candidate."
@@ -100,6 +102,13 @@ function configureCandidatesRoutes(expressApp, sequelize) {
                 res.status(500).send();
             });
     });
+
+    //GET route for a specific candidate by id
+    expressApp.get("/candidate/:id", (req, res) => {
+        sequelize.models.candidate.findByPk(req.params.id, {include: sequelize.models.project})
+            .then(candidate => res.json(candidate))
+            .catch(err => res.status(500).send(err.message || "could not get candidate data"));
+    })
 }
 
 // Create read update delete for Interviuri
@@ -111,6 +120,13 @@ function configureInterviewsRoutes(expressApp, sequelize) {
     expressApp.get('/interviews', function (req, res) {
         sequelize.models.interview.findAll().then(interviews => res.json(interviews));
     })
+
+    expressApp.get("/interview/:id", (req, res) => {
+        sequelize.models.interview.findByPk(req.params.id)
+            .then(interview => res.json(interview))
+            .catch(err => res.status(500).send(err.message || "could not obtain interview"));
+    })
+
     //DELETE route for interviews
     expressApp.delete('/interviews/:id', function (req, res) {
         sequelize.models.interview.destroy({
