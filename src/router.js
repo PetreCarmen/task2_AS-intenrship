@@ -3,8 +3,9 @@ const express = require('express')
 function configureRoutes(expressApp, sequelize) {
     expressApp.use(express.json());
 
-    configureProjectRoutes(expressApp, sequelize)
-    configureCandidatesRoutes(expressApp, sequelize)
+    configureProjectRoutes(expressApp, sequelize);
+    configureCandidatesRoutes(expressApp, sequelize);
+    configureInterviewsRoutes(expressApp, sequelize);
 }
 
 function configureProjectRoutes(expressApp, sequelize) {
@@ -33,7 +34,7 @@ function configureProjectRoutes(expressApp, sequelize) {
     });
 
     //delete
-    expressApp.delete('/project/:id', function(req, res) {
+    expressApp.delete('/project/:id', function (req, res) {
         sequelize.models.project.destroy({
             where: {
                 ID: req.params.id
@@ -43,52 +44,41 @@ function configureProjectRoutes(expressApp, sequelize) {
     })
 
     //adding a select all projects endpoint
-    expressApp.get('/projects', function(req, res){
-        sequelize.models.project.findAll().then(projects =>res.json(projects));
+    expressApp.get('/projects', function (req, res) {
+        sequelize.models.project.findAll().then(projects => res.json(projects));
     })
 }
- 
 
-function configureCandidatesRoutes(expressApp, sequelize){
-    
+
+function configureCandidatesRoutes(expressApp, sequelize) {
     //GET route for candidates
-    expressApp.get('/candidates', function(req, res){
-        sequelize.models.candidate.findAll().then(candidates =>res.json(candidates));
+    expressApp.get('/candidates', function (req, res) {
+        sequelize.models.candidate.findAll().then(candidates => res.json(candidates));
     })
 
     //POST route for candidates
-    expressApp.post ('/candidate', function(req, res){
+    expressApp.post('/candidate', function (req, res) {
         // Validate request
         if (!req.body.Candidate_name) {
-          res.status(400).send({
-            message: "Content can not be empty!"
-          });
-          return;
+            res.status(400).send({
+                message: "Content can not be empty!"
+            });
+            return;
         }
         // Create a candidate
-        const candidate = {
-            Candidate_name: req.body.Candidate_name,
-            Email: req.body.Email,
-            Start_date: req.body.Start_date,
-            Salary: req.body.Salary,
-            Candidate_link: req.body.Candidate_link,
-            Candidate_doc: req.body.Candidate_doc
-        };
+        const candidate = req.body
 
         // Save Candidate in the database
-        candidate.post(candidate)
-          .then(data => {
-            res.send(data);
-          })
-          .catch(err => {
-            res.status(500).send({
-              message:
-                err.message || "Some error occurred while inserting candidate."
+        sequelize.models.candidate.create(candidate)
+            .then(res.send)
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while inserting candidate."
+                });
             });
-          });
-      });
+    });
     //DELETE route for candidates
-    expressApp.delete('/candidate/:id', function(req, res) {
+    expressApp.delete('/candidate/:id', function (req, res) {
         sequelize.models.candidate.destroy({
             where: {
                 ID: req.params.id
@@ -111,18 +101,18 @@ function configureCandidatesRoutes(expressApp, sequelize){
             });
     });
 }
-//Create read update delete for Interviuri
 
-function configureInterviewsRoutes(expressApp, sequelize){
-    
+// Create read update delete for Interviuri
+function configureInterviewsRoutes(expressApp, sequelize) {
+
     //adding a select all Interviews endpoint
 
     //GET route for interviews
-    expressApp.get('/interviews', function(req, res){
-        sequelize.models.interview.findAll().then(interviews =>res.json(interviews));
+    expressApp.get('/interviews', function (req, res) {
+        sequelize.models.interview.findAll().then(interviews => res.json(interviews));
     })
     //DELETE route for interviews
-    expressApp.delete('/interviews/:id', function(req, res) {
+    expressApp.delete('/interviews/:id', function (req, res) {
         sequelize.models.interview.destroy({
             where: {
                 ID: req.params.id
@@ -145,29 +135,25 @@ function configureInterviewsRoutes(expressApp, sequelize){
                 res.status(500).send();
             });
     })
-    expressApp.post ('/interview', function(req, res){
+    expressApp.post('/interview', function (req, res) {
         // Create an interview
-        const interview = {
-            Interview_date: req.body.Interview_date,
-            Interview_duration: req.body.Interview_duration,
-            Interviewer: req.body.Interviewer
-        };
+        const interview = req.body;
 
         // Save Interview in the database
-        interview.post(interview)
-          .then(data => {
-            res.send(data);
-          })
-          .catch(err => {
-            res.status(500).send({
-              message:
-                err.message || "Some error occurred while inserting candidate."
+        sequelize.models.interview.create(interview)
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while inserting candidate."
+                });
             });
-          });
-      });
+    });
 
- 
-    }
+
+}
+
 module.exports = {
     configureRoutes: configureRoutes
 }
