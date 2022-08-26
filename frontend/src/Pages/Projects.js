@@ -1,6 +1,9 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
-function Projects(){
+function Projects()
+{
+    let navigate = useNavigate();
     return <div> ALL PROJECTS </div>;
 }
 
