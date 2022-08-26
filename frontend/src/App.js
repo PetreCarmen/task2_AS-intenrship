@@ -1,8 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+
 import Projects from "./Pages/Projects";
 import Candidates from "./Pages/Candidates";
+import TableExample from "./components/example/TableExample";
 
 function App() {
   return (
