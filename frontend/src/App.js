@@ -1,15 +1,16 @@
 
 import React from "react";
 import './App.css';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import TableExample from "./components/example/TableExample";
+//import Axios from "axios";
+import Navbar from "./Navbar";
 import Projects from "./Pages/Projects";
 import Candidates from "./Pages/Candidates";
-import TableExample from "./components/example/TableExample";
-import Axios from "axios";
-
+import Home from "./Pages/Home";
+import { Route, Routes} from "react-router-dom";
 function App() {
 
-    Axios({
+  /*  Axios({
         method: "GET",
         url: "http://localhost:3001/projects",
         headers: {
@@ -20,20 +21,18 @@ function App() {
       }).catch(err => {
         console.log("err", err);
     });
-
-
+*/
     return (
-        <div className="App">
-            <header className="App-header">
-                <Router>
-                    <Routes>
-                        <Route path="/projects" element={< Projects />}/>
-                        <Route path="/candidates" element={< Candidates />}/>
-                    </Routes>
-                </Router>
-            </header>
-            <TableExample/>
-        </div>
+        <>
+            <Navbar />
+            <div class = "container"> 
+                <Routes>
+                    <Route path="/" element = {<Home />} />
+                    <Route path="/projects" element = {<Projects />} />
+                    <Route path="/candidates" element = {<Candidates />} />
+                </Routes>
+            </div>
+        </>
     );
 }
 
