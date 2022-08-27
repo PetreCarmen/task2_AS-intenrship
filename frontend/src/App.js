@@ -11,13 +11,16 @@ function App() {
 
     Axios({
         method: "GET",
-        url: "http://localhost:3000/",
+        url: "http://localhost:3001/projects",
         headers: {
           "Content-Type": "application/json"
         }
       }).then(res => {
         console.log(res.data.message);
-      });
+      }).catch(err => {
+        console.log("err", err);
+    });
+
 
     return (
         <div className="App">

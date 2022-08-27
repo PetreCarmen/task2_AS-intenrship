@@ -5,12 +5,12 @@ module.exports = startApplication;
 
 function startApplication(sequelize) {
     const app = express();
-    const port = 3000;
+    const port = 3001;
 
+    app.use(cors({origin: "*"}));
 
     routes.configureRoutes(app, sequelize);
 
-    app.use(cors());
     app.listen(port, () => {
         console.log(`Backend server listening on port ${port}`)
     });

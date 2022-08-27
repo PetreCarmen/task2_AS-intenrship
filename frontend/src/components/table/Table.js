@@ -8,9 +8,8 @@ class Task2Table extends React.Component {
     }
 
     renderRow(rowData) {
-        return <tr>{this.props.tableHeadDefinitions.columnDefinitions
-            .map(columnDef => <td
-                key={this.props.tableHeadDefinitions.extractRowKey(rowData)}>{columnDef.renderCell(rowData)}</td>)}</tr>;
+        return <tr key={this.props.tableHeadDefinitions.extractRowKey(rowData)}>{this.props.tableHeadDefinitions.columnDefinitions
+            .map((columnDef, i) => <td key={i}>{columnDef.renderCell(rowData)}</td>)}</tr>;
     }
 
     render() {
@@ -23,7 +22,7 @@ class Task2Table extends React.Component {
                     <th colSpan={tableHeadDefinitions.columnDefinitions.length}>{this.props.tableHeadComponent}</th>
                 </tr>}
                 <tr>
-                    {tableHeadDefinitions.columnDefinitions.map(def => <th>{def.columnName}</th>)}
+                    {tableHeadDefinitions.columnDefinitions.map(def => <th key={def.columnName.toString()}>{def.columnName}</th>)}
                 </tr>
                 </thead>
 
