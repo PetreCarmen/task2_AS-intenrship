@@ -4,7 +4,7 @@ const doAlert = (rowData) => {
     alert(`button alert for row with id: ${rowData["rowNo"]} was clicked` )
 }
 
-function CandidatesTable() {
+function ProjectsTable() {
     const tableHeadDefs = {
         extractRowKey: (rowData) => {
             return rowData["rowNo"]
@@ -35,15 +35,15 @@ function CandidatesTable() {
                 },
             },
             {
-                columnName: "Candidate link",
+                columnName: "Project link",
                 renderCell: (rowData) => {
-                    return rowData["candidateLink"];
+                    return rowData["projectLink"];
                 },
             }, 
              {
-                columnName: "Candidate doc",
+                columnName: "Project doc",
                 renderCell: (rowData) => {
-                    return rowData["candidateDoc"];
+                    return rowData["ProjectDoc"];
                 },
             },
             {
@@ -68,9 +68,9 @@ function CandidatesTable() {
     const tableHeadComponent = <p></p>
 
     return <div>
-        <h1>Candidates</h1>
+        <h1>Projects</h1>
         <Task2Table tableHeadDefinitions={tableHeadDefs} tableData={tableData} tableHeadComponent={tableHeadComponent}/>
     </div>
 }
 
-export default CandidatesTable
+export default ProjectsTable
