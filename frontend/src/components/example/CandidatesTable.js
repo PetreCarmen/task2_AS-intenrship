@@ -65,7 +65,7 @@ function CandidatesTable() {
     // updates the state of your Projects component(from Pages folder). Then the updated state
     // of the Projects component will be propagated in the table through parameters and render() eventually
     // being called
-    const tableHeadComponent = <p>Hello world!</p>
+    const tableHeadComponent = <p></p>
 
     return <div>
         <h1>Candidates</h1>
