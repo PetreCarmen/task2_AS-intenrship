@@ -13,11 +13,10 @@ function configureProjectRoutes(expressApp, sequelize) {
     expressApp.get('/project/:id',
         (req, res) => {
             const id = req.params.id;
-            console.log("id", id);
             sequelize.models.project.findByPk(id).then(project => {
                 res.setHeader("Content-Type", "application/json");
                 res.json(project["dataValues"]);
-            }).catch((err) => res.status(404).send());
+            }).catch((err) => {res.status(404).send(); console.error(err)});
         });
     // 5-Add an endpoint for updating an existing project based on its id
     expressApp.put('/project/:id', function (req, res) {
@@ -28,7 +27,7 @@ function configureProjectRoutes(expressApp, sequelize) {
             }
         }).then(() => res.status(200).send())
             .catch(err => {
-                console.log("could not update", err);
+                console.error("could not update", err);
                 res.status(500).send();
             });
     });
@@ -98,7 +97,7 @@ function configureCandidatesRoutes(expressApp, sequelize) {
             }
         }).then(() => res.status(200).send())
             .catch(err => {
-                console.log("could not update", err);
+                console.error("could not update", err);
                 res.status(500).send();
             });
     });
@@ -147,7 +146,7 @@ function configureInterviewsRoutes(expressApp, sequelize) {
             }
         }).then(() => res.status(200).send())
             .catch(err => {
-                console.log("could not update", err);
+                console.error("could not update", err);
                 res.status(500).send();
             });
     })

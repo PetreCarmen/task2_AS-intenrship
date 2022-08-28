@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import Navbar from "./Navbar";
 import Projects from "./Pages/Projects";
-import Candidates from "./Pages/Candidates";
+import Candidates from "./Pages/candidates/Candidates";
 import Home from "./Pages/Home";
 import {Route, Routes} from "react-router-dom";
 
