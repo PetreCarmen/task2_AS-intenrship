@@ -7,11 +7,8 @@ function Candidates(){
     Axios({
         method: "GET",
         url: "http://localhost:3001/projects",
-        headers: {
-          "Content-Type": "application/json"
-        }
       }).then(res => {
-        console.log(res.data.message);
+        console.log(res.data);
       }).catch(err => {
         console.log("err", err);
     });

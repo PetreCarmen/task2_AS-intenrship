@@ -49,8 +49,8 @@ function CandidatesTable() {
             {
                 columnName: "Actions",
                 renderCell: rowData => {
-                    return <button onClick={doAlert.bind(this, rowData)}>Update</button>
-                    return <button onClick={doAlert.bind(this, rowData)}>Delete</button>
+                    return <><button onClick={doAlert.bind(this, rowData)}>Update</button>
+                     <button onClick={doAlert.bind(this, rowData)}>Delete</button></>
                 } // here you can render data as well as components(for example a delete button, an update button, etc.)
             }
         ]
