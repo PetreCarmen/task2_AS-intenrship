@@ -6,7 +6,6 @@ const sequelize = new Sequelize(
     'projectsdb',
     'root',
     'password', {
-
         dialect: 'mysql',
         host: 'localhost'
     }
