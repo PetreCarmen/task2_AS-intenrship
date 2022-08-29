@@ -19,3 +19,5 @@ function startApplication(sequelize) {
         res.send({ message: "We did it!" });
       });
 }
+
+

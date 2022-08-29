@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import Axios from "axios";
 
 const doAlert = (rowData) => {
-    alert(`button alert for row with id: ${rowData["rowNo"]} was clicked` )
+    alert(`button alert for row with id: ${rowData["ID"]} was clicked` )
 }
 
 function ProjectsTable(params) {
@@ -23,7 +23,7 @@ function ProjectsTable(params) {
 
     const handleSave = (project) => {
         Axios({
-            url: `http://localhost:3001/candidate/${project.ID}`,
+            url: `http://localhost:3001/project/${project.ID}`,
             method: 'PUT',
             data: project,
         }).then(_ => {

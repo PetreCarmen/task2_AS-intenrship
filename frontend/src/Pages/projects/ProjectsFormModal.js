@@ -2,17 +2,17 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { useState } from "react";
 
 export default function ProjectsFormModal(params) {
-  const [projectNo, setNumber] = useState( params.Project_no || "");
+  const [projectNo, setNumber] = useState( params.Project_no || 0);
   const [description, setDescription] = useState( params.Project_short_description || "");
-  const [requestDate, setRequestDate] = useState(params.Request_date && params.Request_date.substring(0, 10) || "");
-  const [projectStartDate, setStartDate] = useState(params.Start_date && params.Start_date.substring(0, 10) || "");
+  const [requestDate, setRequestDate] = useState((params.Request_date && params.Request_date.substring(0, 10)) || "");
+  const [projectStartDate, setStartDate] = useState((params.Start_date && params.Start_date.substring(0, 10)) || "");
   const [projectDuration, setDuration] = useState(params.Duration || 0);
   const [projectCurrency, setCurrency] = useState(params.Project_currency || "");
   const [client, setClient] = useState(params.Client || "");
   const [location, setLocation] = useState(params.Working_location || "");
   const [travelReq, setTravelReq] = useState(params.Travel_required || "");
-  const [members, setMembersd] = useState(params.Team_members || "");
-  const [workingHours, setWorkingHours] = useState(params. Working_hours || "");
+  const [members, setMembers] = useState(params.Team_members || "");
+  const [workingHours, setWorkingHours] = useState(params.Working_hours || "");
   const [mandatorySkills, setMandatorySkills] = useState(params.Mandatory_skills || "");
   const [skills, setSkills] = useState(params.Nice_to_have_skills || "");
   const [toDo, setToDo] = useState(params.To_Do || "");
@@ -31,7 +31,7 @@ export default function ProjectsFormModal(params) {
   const handleClientChange = createHandler(setClient);
   const handleWorkLocationChange = createHandler(setLocation);
   const handleTravelReqChange = createHandler(setTravelReq);
-  const handleTeamMembersChange = createHandler(setMembersd);
+  const handleTeamMembersChange = createHandler(setMembers);
   const handleWorkingHoursChange = createHandler(setWorkingHours);
   const handleMandatorySkillsChange = createHandler(setMandatorySkills);
   const handleNiceToHaveSkillsChange = createHandler(setSkills);
@@ -122,7 +122,7 @@ export default function ProjectsFormModal(params) {
         </Form.Group>
         <Form.Group className="md-3" controlId="toDo">
           <Form.Label>To do</Form.Label>
-          <Form.Control type="text" placeholder="Enter to do" value={skills} onChange={handleToDoChange}/>
+          <Form.Control type="text" placeholder="Enter to do" value={toDo} onChange={handleToDoChange}/>
         </Form.Group>
       </Form>
     </Modal.Body>

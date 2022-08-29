@@ -40,7 +40,7 @@ function Projects() {
       })
       .catch(err => {
         setShow(false);
-        alert(`could not save candidate error: ${err}`);
+        alert(`could not save project error: ${err}`);
       });
   };
 
@@ -53,7 +53,7 @@ function Projects() {
       <Modal show={show} onHide={handleClose}>
         <ProjectsFormModal actionTitle={"Add Project"} handleSave={handleSave} handleClose={handleClose}/>
       </Modal>
-      <div className="Candidates">
+      <div className="Projects">
         <ProjectsTable tableData={tableData} refreshTable={updateTableData}/>
       </div>
     </>
