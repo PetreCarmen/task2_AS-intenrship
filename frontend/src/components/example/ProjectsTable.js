@@ -34,100 +34,87 @@ function ProjectsTable(params) {
             console.error("could not update project", project, err)
         })
     }
+    const handleDelete = (project) => {
+        Axios({
+            url: `http://localhost:3001/project/${project.ID}`,
+            method: 'DELETE',
+        }).then(_ => {
+            params.refreshTable();
+        }).catch(err => {
+            alert(`could not update project: ${JSON.stringify(project)}`)
+            console.error("could not update project", project, err)
+        })
+    }
     const tableHeadDefs = {
         extractRowKey: (rowData) => {
             return rowData["ID"]
         },
         columnDefinitions: [
             {
+                columnName: "ID",
+                renderCell: (rowData) => rowData["ID"],
+            },
+            {
                 columnName: "Project number",
-                renderCell: (rowData) => {
-                    return rowData["Project_no"];
-                },
+                renderCell: (rowData) => rowData["Project_no"], 
             },
             {
                 columnName: "Project short description",
-                renderCell: (rowData) => {
-                    return rowData["Project_short_description"];
-                },
+                renderCell: (rowData) => rowData["Project_short_description"],
             },
             {
                 columnName: "Request date",
-                renderCell: (rowData) => {
-                    return rowData["Request_date"];
-                },
+                renderCell: (rowData) => rowData["Request_date"],
             },
             {
                 columnName: "Project start date",
-                renderCell: (rowData) => {
-                    return rowData["Project_start_date"];
-                },
+                renderCell: (rowData) => rowData["Project_start_date"],
             },
             {
-                columnName: "ProjecProject durationt",
-                renderCell: (rowData) => {
-                    return rowData["Project_duration"];
-                },
+                columnName: "Project duration",
+                renderCell: (rowData) => rowData["Project_duration"],    
             }, 
              {
                 columnName: "Project currency",
-                renderCell: (rowData) => {
-                    return rowData["Project_currency"];
-                },
+                renderCell: (rowData) =>  rowData["Project_currency"],
             },
             {
                 columnName: "Client",
-                renderCell: (rowData) => {
-                    return rowData["Client"];
-                },
+                renderCell: (rowData) =>  rowData["Client"],
             },
             {
                 columnName: "Working location",
-                renderCell: (rowData) => {
-                    return rowData["Working_location"];
-                },
+                renderCell: (rowData) => rowData["Working_location"],
             },
             {
                 columnName: "Travel required",
-                renderCell: (rowData) => {
-                    return rowData["Travel_required"];
-                },
+                renderCell: (rowData) => rowData["Travel_required"]
             },
             {
                 columnName: "Team members",
-                renderCell: (rowData) => {
-                    return rowData["Team_members"];
-                },
+                renderCell: (rowData) => rowData["Team_members"],
             },
             {
                 columnName: "Working hours",
-                renderCell: (rowData) => {
-                    return rowData["Working_hours"];
-                },
+                renderCell: (rowData) => rowData["Working_hours"],
             },
             {
                 columnName: "Mandatory skills",
-                renderCell: (rowData) => {
-                    return rowData["Mandatory_skills"];
-                },
+                renderCell: (rowData) => rowData["Mandatory_skills"],
             },
             {
                 columnName: "Nice to have skills",
-                renderCell: (rowData) => {
-                    return rowData["Nice_to_have_skills"];
-                },
+                renderCell: (rowData) => rowData["Nice_to_have_skills"],
             },
             {
                 columnName: "To Do",
-                renderCell: (rowData) => {
-                    return rowData["To_Do"];
-                },
+                renderCell: (rowData) => rowData["To_Do"],
             },
             {
                 columnName: "Actions",
                 renderCell: rowData => {
                     return <><button onClick={update.bind(this, rowData)}>Update</button>
-                     <button onClick={doAlert.bind(this, rowData)}>Delete</button></>
+                     <button onClick={handleDelete.bind(this, rowData)}>Delete</button> </>
                 } // here you can render data as well as components(for example a delete button, an update button, etc.)
             }
         ]
