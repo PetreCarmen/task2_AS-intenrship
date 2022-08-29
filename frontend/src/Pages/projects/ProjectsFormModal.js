@@ -70,7 +70,7 @@ export default function ProjectsFormModal(params) {
       <Form>
         <Form.Group className="md-3" controlId="projectNo">
           <Form.Label>Project number</Form.Label>
-          <Form.Control type="projectNo" placeholder="Enter project number" value={projectNo} onChange={handleNumberChange}/>
+          <Form.Control type="text" placeholder="Enter project number" value={projectNo} onChange={handleNumberChange}/>
         </Form.Group>
         <Form.Group className="md-3" controlId="description">
           <Form.Label>Project short description</Form.Label>
@@ -98,7 +98,7 @@ export default function ProjectsFormModal(params) {
         </Form.Group>
         <Form.Group className="md-3" controlId="location">
           <Form.Label>Working location</Form.Label>
-          <Form.Control type="number" placeholder="Enter working location" value={location} onChange={handleWorkLocationChange}/>
+          <Form.Control type="text" placeholder="Enter working location" value={location} onChange={handleWorkLocationChange}/>
         </Form.Group>
         <Form.Group className="md-3" controlId="travelReq">
           <Form.Label>Travel required</Form.Label>
