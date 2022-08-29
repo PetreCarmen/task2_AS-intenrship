@@ -5,14 +5,15 @@ module.exports = startApplication;
 
 function startApplication(sequelize) {
     const app = express();
-    const port = process.env.PORT || 3000;
+    const port = 3001;
 
-    app.use(cors());
+    app.use(cors({origin: "*"}));
 
     routes.configureRoutes(app, sequelize);
 
-    app.listen(port, () => 
-        console.log("Backend server listening on port" + port));
+    app.listen(port, () => {
+        console.log('Backend server listening on port" ${port}');
+    });
 
     app.get("/", (req, res) => {
         res.send({ message: "We did it!" });
