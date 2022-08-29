@@ -13,25 +13,28 @@ code {
 }
 
 .container {
-  margin: 1rem;
+  margin: 5rem;
   text-align: center;
+  
 }
 *{
   box-sizing: border-box;
+
 }
 
 body{
   margin: 0;
 }
 
+
 .nav {
-  background-color: #333;
+  background-color: rgb(32, 61, 139);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
-  padding: 0 1rem;
+  padding: 0 5rem;
 }
 
 .site-title {
@@ -40,10 +43,9 @@ body{
 
 .nav ul {
   padding: 0;
-  margin:0;
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 4rem;
 }
 .nav a {
   color: inherit;
@@ -51,12 +53,13 @@ body{
   height: 100%;
   display: flex;
   align-items:center;
-  padding: .25rem;
+  padding: 1rem;
 
 }
 .nav li.active {
-  background-color: #555;
+  background-color: rgb(166, 139, 139);
 }
 .nav li:hover {
   background-color: #777;
 }
+  margin-top: 0%;
