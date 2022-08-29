@@ -35,6 +35,18 @@ function CandidatesTable(params) {
         })
     }
 
+    const handleDelete = (candidate) => {
+        Axios({
+            url: `http://localhost:3001/candidate/${candidate.ID}`,
+            method: 'DELETE',
+        }).then(_ => {
+            params.refreshTable();
+        }).catch(err => {
+            alert(`could not update candidate: ${JSON.stringify(candidate)}`)
+            console.error("could not update candidate", candidate, err)
+        })
+    }
+
 
     const tableHeadDefs = {
         extractRowKey: (rowData) => {
@@ -73,11 +85,12 @@ function CandidatesTable(params) {
                 columnName: "Actions",
                 renderCell: rowData => {
                     return <><button onClick={update.bind(this, rowData)}>Update</button>
-                     <button onClick={doAlert.bind(this, rowData)}>Delete</button></>
+                     <button onClick={handleDelete.bind(this, rowData)}>Delete</button></>
                 } // here you can render data as well as components(for example a delete button, an update button, etc.)
             }
         ]
     };
+
 
     const tableData = params.tableData;
 
