@@ -57,9 +57,9 @@ body{
 
 }
 .nav li.active {
-  background-color: rgb(166, 139, 139);
+  background-color: rgb(61, 61, 205);
 }
 .nav li:hover {
-  background-color: #777;
+  background-color: rgb(61, 61, 205);
 }
-  margin-top: 0%;
+  /*margin-top: 0%;*/
