@@ -10,7 +10,7 @@ function configureRoutes(expressApp, sequelize) {
 
 function configureProjectRoutes(expressApp, sequelize) {
 
-    //POST route for candidates
+    //POST route for projects
     expressApp.post('/project', function (req, res) {
         // Create a project
         const project = req.body
