@@ -5,8 +5,8 @@ export default function ProjectsFormModal(params) {
   const [projectNo, setNumber] = useState( params.Project_no || 0);
   const [description, setDescription] = useState( params.Project_short_description || "");
   const [requestDate, setRequestDate] = useState((params.Request_date && params.Request_date.substring(0, 10)) || "");
-  const [projectStartDate, setStartDate] = useState((params.Start_date && params.Start_date.substring(0, 10)) || "");
-  const [projectDuration, setDuration] = useState(params.Duration || 0);
+  const [projectStartDate, setStartDate] = useState((params.Project_start_date && params.Project_start_date.substring(0, 10)) || "");
+  const [projectDuration, setDuration] = useState(params.Project_duration || 0);
   const [projectCurrency, setCurrency] = useState(params.Project_currency || "");
   const [client, setClient] = useState(params.Client || "");
   const [location, setLocation] = useState(params.Working_location || "");

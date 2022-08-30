@@ -9,6 +9,20 @@ function configureRoutes(expressApp, sequelize) {
 }
 
 function configureProjectRoutes(expressApp, sequelize) {
+
+    //POST route for projects
+    expressApp.post('/project', function (req, res) {
+        // Create a project
+        const project = req.body
+        // Save Candidate in the database
+        sequelize.models.project.create(project)
+            .then(result => res.json(result))
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while inserting project."
+                });
+            });
+    });
     //adding an endpoint which can return a project based on a given project id
     expressApp.get('/project/:id',
         (req, res) => {
